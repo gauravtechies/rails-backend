@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  car: one
+  event_name: MyString
+  event_place: MyString
+  participants: 1
+  requirement: MyText
+  additional_info: MyText
+
+two:
+  car: two
+  event_name: MyString
+  event_place: MyString
+  participants: 1
+  requirement: MyText
+  additional_info: MyText

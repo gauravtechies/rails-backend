@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_12_073538) do
+ActiveRecord::Schema.define(version: 2018_11_12_094603) do
 
   create_table "cars", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.bigint "user_id"
@@ -21,6 +21,18 @@ ActiveRecord::Schema.define(version: 2018_11_12_073538) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_cars_on_user_id"
+  end
+
+  create_table "events", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
+    t.bigint "car_id"
+    t.string "event_name"
+    t.string "event_place"
+    t.integer "participants"
+    t.text "requirement"
+    t.text "additional_info"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["car_id"], name: "index_events_on_car_id"
   end
 
   create_table "items", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
@@ -39,4 +51,5 @@ ActiveRecord::Schema.define(version: 2018_11_12_073538) do
   end
 
   add_foreign_key "cars", "users"
+  add_foreign_key "events", "cars"
 end
