@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   skip_before_action :authenticate_request, only: [:create]
   # GET /users
   def index
-    @users = User.all
+     @users = User.all
     render json: @users
   end
 
@@ -14,8 +14,8 @@ class UsersController < ApplicationController
 
   # POST /users
   def create
+    params[:user][:name]=params[:user][:first_name] + " " + params[:user][:last_name];
     @user = User.new(user_params)
-
     if @user.save
       render json: @user, status: :created, location: @user
     else
@@ -45,6 +45,6 @@ class UsersController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def user_params
-      params.require(:user).permit(:name, :email, :password)
+      params.require(:user).permit(:name,:email, :password)
     end
 end
