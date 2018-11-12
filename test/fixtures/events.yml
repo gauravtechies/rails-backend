@@ -6,7 +6,6 @@ one:
   event_place: MyString
   participants: 1
   requirement: MyText
-  additional_info: MyText
 
 two:
   car: two
@@ -14,4 +13,3 @@ two:
   event_place: MyString
   participants: 1
   requirement: MyText
-  additional_info: MyText
