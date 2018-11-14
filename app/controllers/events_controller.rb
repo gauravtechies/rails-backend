@@ -1,6 +1,5 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :update, :destroy]
-
   # GET /events
   def index
     @events = Event.all
@@ -16,10 +15,10 @@ class EventsController < ApplicationController
   # POST /events
   def create
     @event = Event.new(event_params)
-    debugger
-    @event.cars=event_params[:car_ids]
-    
     if @event.save
+      car_ids=params[:car_id]
+      car_ids.each{ |x| @event.invite_members.build(car_id: x).save }
+      
       render json: @event, status: :created, location: @event
     else
       render json: @event.errors, status: :unprocessable_entity
@@ -48,6 +47,6 @@ class EventsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def event_params
-      params.require(:event).permit(:event_name, :event_place, :participants, :requirement, :additional_info, :lang)
+      params.require(:event).permit(:event_name, :event_place, :participants, :requirement, :additional_info,car_ids: [])
     end
 end
