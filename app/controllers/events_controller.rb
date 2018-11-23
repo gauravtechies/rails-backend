@@ -14,10 +14,11 @@ class EventsController < ApplicationController
 
   # POST /events
   def create
+    debugger
     @event = Event.new(event_params)
     if @event.save
-      car_ids=params[:car_id]
-      car_ids.each{ |x| @event.invite_members.build(car_id: x).save }
+      # car_ids=params[:car_ids]
+      # car_ids.each{ |x| @event.event_cars.build(car_id: x).save }
       
       render json: @event, status: :created, location: @event
     else

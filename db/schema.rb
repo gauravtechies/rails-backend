@@ -23,6 +23,11 @@ ActiveRecord::Schema.define(version: 2018_11_12_115934) do
     t.index ["user_id"], name: "index_cars_on_user_id"
   end
 
+  create_table "event_cars", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
+    t.integer "car_id"
+    t.integer "event_id"
+  end
+
   create_table "events", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.string "event_name"
     t.string "event_place"
@@ -31,13 +36,6 @@ ActiveRecord::Schema.define(version: 2018_11_12_115934) do
     t.text "additional_info"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "invite_members", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
-    t.bigint "event_id"
-    t.bigint "car_id"
-    t.index ["car_id"], name: "index_invite_members_on_car_id"
-    t.index ["event_id"], name: "index_invite_members_on_event_id"
   end
 
   create_table "items", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
@@ -56,6 +54,4 @@ ActiveRecord::Schema.define(version: 2018_11_12_115934) do
   end
 
   add_foreign_key "cars", "users"
-  add_foreign_key "invite_members", "cars"
-  add_foreign_key "invite_members", "events"
 end
